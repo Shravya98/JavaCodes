@@ -1,0 +1,28 @@
+/* LeetCode-350
+Given two integer arrays nums1 and nums2, return an array of their intersection. 
+Each element in the result must appear as many times as it shows in both arrays and you may return the result in any order. */
+class Solution {
+    public int[] intersect(int[] nums1, int[] nums2) {
+        int m=nums1.length;
+        int n=nums2.length;
+        int[] a=new int[m+n];
+        Arrays.sort(nums1);
+        Arrays.sort(nums2);
+        int i=0,j=0,k=0;
+        while(i<m && j<n){
+            if(nums1[i]==nums2[j]){
+                a[k]=nums1[i];
+                i++;
+                j++;
+                k++;
+            }
+			else if(nums1[i]<nums2[j]) i++;
+            else j++;
+        }
+        int fin[]=new int[k];
+        for(int ii=0;ii<k;ii++) fin[ii]=a[ii];
+        
+        return fin;
+        
+    }
+}
