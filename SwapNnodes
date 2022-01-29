@@ -1,0 +1,65 @@
+
+import java.util.*;
+import java.io.*;
+public class Main {
+    static class Node{
+        int value;
+        Node next;
+        Node(int value){
+            this.value=value;
+            next=null;
+        }
+    }
+    static void insertNode(Node node,int data){
+     while(node.next!=null)
+         node=node.next;
+     node.next=new Node(data);
+    }
+    static void swap(Node node,int n,int k){
+        Node temp=null;
+        if(k==n||k==1){
+            temp=node;
+            for(int i=0;i<n-1;i++)
+                temp=temp.next;
+            int value=node.value;
+            node.value=temp.value;
+            temp.value=value;
+        }
+        else{
+            for (int i = 0; i < k - 1; i++) {
+                if (i == 0)
+                    temp = node;
+                else
+                    temp = temp.next;
+            }
+            Node curr1 = temp;
+            Node temp1 = temp.next;
+            temp = node;
+            for (int i = 0; i < n - k - 1; i++) {
+                temp = temp.next;
+            }
+            Node curr2 = temp;
+            Node temp2 = temp.next;
+
+            curr1.next = temp2;
+            curr2.next = temp1;
+            Node temp3 = temp2.next;
+            temp2.next = temp1.next;
+            temp1.next = temp3;
+        }
+    }
+    public static void main(String args[]) {
+        Scanner sc=new Scanner(System.in);
+        int n,k;
+        n=sc.nextInt();
+        k=sc.nextInt();
+        Node node=new Node(sc.nextInt());
+        for(int i=1;i<n;i++)
+            insertNode(node,sc.nextInt());
+        swap(node,n,k);
+        while(node!=null){
+            System.out.print(node.value+" ");
+            node=node.next;
+        }
+    }
+}
