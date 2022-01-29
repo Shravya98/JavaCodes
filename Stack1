@@ -1,0 +1,23 @@
+import java.util.*;
+import java.io.*;
+public class Main {
+    public static String reverse(String str) {
+       // char[] ar = new char[100];
+        Stack<Character> st = new Stack<Character>();
+        char[] ar = str.toCharArray();
+        for(char c: ar){
+            st.push(c);
+        }
+        for(int i=0;i<str.length();i++){
+            ar[i]=st.pop();
+        }
+        return new String(ar);
+    }
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String s = sc.next();
+        System.out.print(reverse(s));
+
+
+    }
+}
